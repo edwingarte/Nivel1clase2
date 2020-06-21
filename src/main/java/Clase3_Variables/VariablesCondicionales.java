@@ -1,4 +1,4 @@
-package com.sophos.capacitacion.Nivel1clase2;
+package Clase3_Variables;
 
 public class VariablesCondicionales {
 	
