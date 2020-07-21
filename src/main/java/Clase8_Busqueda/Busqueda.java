@@ -18,7 +18,7 @@ public class Busqueda {
 		}
 		public void navegadorGoogle() {
 			objDriver = new Driver();
-			objDriver.navegadorGoogle();
+			objDriver.lanzarNavegador("google");
 			objDriver.navegarA("https://www.google.com");
 			WebElement CajadeTexto = objDriver.getDriver().findElement(By.xpath("//*[@id=\"tsf\"]/div[2]/div[1]/div[1]/div/div[2]/input"));
 			CajadeTexto.sendKeys("Sophos Chronus");
@@ -28,7 +28,7 @@ public class Busqueda {
 			} catch (Exception e) {
 				
 			}
-			objDriver.cerrarN();
+			objDriver.cierreNavegador();
 		}
 
 

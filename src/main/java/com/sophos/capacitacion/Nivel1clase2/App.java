@@ -7,6 +7,9 @@ import org.openqa.selenium.WebDriver;
 import Clase10_Factory.Animales;
 import Clase10_Factory.Leon;
 import Clase10_Factory.Vaca;
+import Clase11_Merca.VistaHomeMercadolibre;
+import Clase11_Merca.VistaResultados;
+import Clase12_ebay.VistaHomeEbay;
 import Patron_Singleton.PatronSingleton;
 import PatronInvestigado.Cliente;
 import PatronInvestigado.metodCliente;
@@ -56,23 +59,67 @@ public class App
     	
    /* Aca se llama el patron DAO para validar su funcionamiento  */    
      // objeto para manipular el DAO
-     		metodCliente metodCliente = new ImplCliente();
+     		//metodCliente metodCliente = new ImplCliente();
       
      		// imprimir los clientes
-     		metodCliente.obtenerClientes().forEach(System.out::println);
+     		//metodCliente.obtenerClientes().forEach(System.out::println);
       
      		// obtener un cliente
-     		Cliente cliente = metodCliente.obtenerCliente(0);
-     		cliente.setApellido("Linares");
+     		//Cliente cliente = metodCliente.obtenerCliente(0);
+     		//cliente.setApellido("Linares");
      		
      		//actualizar cliente
-     		metodCliente.actualizarCliente(cliente);
+     		//metodCliente.actualizarCliente(cliente);
       
      		// imprimir los clientes
-     		System.out.println("*****");
-     		metodCliente.obtenerClientes().forEach(System.out::println);
-     		System.out.println("Cliente con id: "+cliente.getId()+" Con nombre: "+cliente.getNombre()+" Con apellido: "+cliente.getApellido()+" con Direccion : "+cliente.getDireccion());
-		
+     		//System.out.println("*****");
+     		//metodCliente.obtenerClientes().forEach(System.out::println);
+     		//System.out.println("Cliente con id: "+cliente.getId()+" Con nombre: "+cliente.getNombre()+" Con apellido: "+cliente.getApellido()+" con Direccion : "+cliente.getDireccion());
+		//Clase 11 
+    	App app = new App();
+    	//app.mercadolibreclase11();
+    	app.clase12Ebay();
+         }
+ 
+ 
+    public void mercadolibreclase11 () {
+    	Driver objDriver = new Driver ();
+    	objDriver.lanzarNavegador("google");
+    	objDriver.navegarA("https://www.mercadolibre.com.co/");
+    	VistaHomeMercadolibre VistaHome = new VistaHomeMercadolibre(objDriver.getDriver());
+    	VistaHome.setTextAndLookFor("Moto Spike");
+    	VistaResultados resultados = new VistaResultados(objDriver.getDriver());
+    	//resultados.imprimaTextosEnLista();
+    	resultados.seleccionePrimerElemento();
+    	
+    		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	objDriver.cierreNavegador();
     }
+ 
+    public void clase12Ebay() {
+    	Driver objDriver = new Driver ();
+    	objDriver.lanzarNavegador("google");
+    	objDriver.navegarA("https://www.ebay.com/");
+    	VistaHomeEbay ebay = new VistaHomeEbay(objDriver.getDriver());
+    	if (ebay.seleccionarPorNombre("Arte")) {
+    		System.out.println("La opción seleccionada existe");
+    	} else {
+    		System.out.println("La opción seleccionada no existe");
+    	}
+    	
+    	try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	objDriver.cierreNavegador();
+    }
+  
 }
 
